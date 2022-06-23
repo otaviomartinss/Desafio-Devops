@@ -30,9 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d
-      - name: Docker Compose up
-        run: python3 manage.py runserver 0.0.0.0:5000
+        run: ./web/docker-compose up -d
             
             
             
