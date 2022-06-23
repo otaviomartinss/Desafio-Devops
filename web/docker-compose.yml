@@ -1,0 +1,26 @@
+version: "3.8"
+
+
+services:
+  web:
+    env_file:
+      - .env
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:5000
+    volumes:
+      - .:/api
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_NAME=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
